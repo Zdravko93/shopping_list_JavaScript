@@ -1,0 +1,224 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+}
+
+h1,
+p,
+ul,
+li,
+input {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  border: none;
+}
+
+h1 {
+  margin-top: 2em;
+  text-align: center;
+  font-size: 2.5rem;
+  color: purple;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 0.3em;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-item-input-group {
+  display: flex;
+}
+
+.container input {
+  border: 1px solid purple;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding-left: 0.2em;
+}
+
+.container input::placeholder {
+  padding-left: 0.1em;
+  opacity: 0.4;
+}
+
+.container input:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.container input,
+.add-item-btn {
+  font-size: 1.2rem;
+}
+
+.add-item-btn {
+  background: purple;
+  color: yellow;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  opacity: 0.5;
+  transition: opacity 100ms;
+}
+
+.add-item-btn:hover,
+.add-item-btn:active {
+  opacity: 1;
+}
+
+.error-message-container {
+  margin-top: 0.3em;
+  width: 100%;
+
+  display: none;
+}
+
+.shopping-list {
+  list-style: none;
+  margin-top: 2em;
+  width: 100%;
+}
+
+.shopping-list li {
+  padding: 0.3em 0.3em 0.2em 0.3em;
+  font-size: 1.3rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: green;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-buttons-container {
+  display: flex;
+  gap: 0.3em;
+}
+
+button.edit-button,
+button.delete-button {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  border-radius: 3px;
+  opacity: 0.5;
+  transition: all 100ms ease-in;
+}
+
+button.edit-button:hover,
+button.delete-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+button.edit-button {
+  background: orange;
+}
+
+button.delete-button {
+  background: red;
+}
+
+.shopping-list li:not(:last-of-type) {
+  margin-bottom: 0.4em;
+}
+
+/* HELPER CLASSES FOR DYNAMICALLY CHANGING USER INTERFACE */
+.fade-in {
+  color: red;
+  font-size: 0.8em;
+}
+
+.fade-in {
+  animation: fade-in 300ms linear;
+}
+
+.list-item-text-line-through {
+  position: relative;
+}
+
+.list-item-text-line-through::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: red;
+  animation: strike-out 300ms linear forwards;
+}
+
+.list-item-twist {
+  animation: twist 500ms 300ms linear;
+}
+
+// ANIMATIONS
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes strike-out {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes twist {
+  0% {
+    opacity: 1;
+    transform: translate(0) rotate(0deg);
+  }
+  25% {
+    opacity: 0.75;
+    transform: translate(50px) rotate(5deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(100px, -100px) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(150px, -150px) rotate(25deg);
+  }
+}
